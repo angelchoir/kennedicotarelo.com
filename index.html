@@ -8,9 +8,6 @@
 <link rel="icon" type="image/x-icon" href="images/tablogo.ico">
 
 <style>
-
-    font-family : Verdana, sans-serif;
-
 *{
     margin:0;
     padding:0;
@@ -18,460 +15,171 @@
 }
 
 body{
-    overflow:hidden;
-    background:#000;
-    font-family: 'Roboto Condensed', sans-serif;
-    height:100vh;
-    color:white;
-
+    background:#EDE8EB;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#555;
     cursor:url("images/cursor.webp") 32 32, auto;
-}
 
-/* =========================================
-   BACKGROUND
-========================================= */
-
-.bg{
-    animation:bgIntro 4s ease forwards;
-}
-
-@keyframes bgIntro{
-    from{
-        transform:scale(1.12);
-    }
-    to{
-        transform:scale(1.05);
-    }
-}
-
-/* =========================================
-   NOISE / VIGNETTE
-========================================= */
-
-.noise{
-    position:fixed;
-    inset:0;
-
-    background:
-    url("images/backgrouundmain.gif");
+    background-image: url("");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    opacity:.70;
-
-    mix-blend-mode:screen;
-
-    pointer-events:none;
+    background-attachment: fixed;
 }
 
-.vignette{
-    position:fixed;
-    inset:0;
-
-    box-shadow:
-    inset 0 0 220px rgba(0,0,0,.98);
-
-    pointer-events:none;
+.boxalt{
+    text-align: center;
 }
 
-/* =========================================
-   MENU
-========================================= */
+/* Main layout */
 
 .container{
-
-    position:absolute;
-
-    left:7%;
-    top:50%;
-
-    transform:
-    translateY(-50%);
-
-    z-index:10;
-
-    opacity:1;
-
-    transition:1.2s ease;
+    width:980px;
+    margin:40px auto;
+    display:flex;
+    gap:20px;
 }
 
-.title{
+h3{
+    font-size:15px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+}
+
+.center {
+    text-align: center;
+}
+
+l {
+    display: block;
+    text-align: center;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    border:1px solid #d9d9d9;
+    background:#fff;
+}
+
+.sidebar img{
+    width:100%;
+    display:block;
+}
+
+.profile{
+    padding:15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
-
-    font-size:5rem;
-    font-weight:300;
-
-    letter-spacing:12px;
-
-    margin-bottom:40px;
-
-    color:#fceaff;
-
-    animation:flicker 4s infinite;
 }
 
-@keyframes flicker{
-
-    0%,18%,22%,25%,53%,57%,100%{
-        opacity:1;
-    }
-
-    20%,24%,55%{
-        opacity:.45;
-    }
-
+.profile h2{
+    font-size:18px;
+    color:#C2A5AB;
+    margin-bottom:10px;
 }
 
-.sidebar ul{
-list-style:none;
-user-select:none;
+.profile p{
+    font-size:13px;
+    line-height:1.5;
 }
 
-.sidebar li{
-margin:20px 0;
+.links{
+    border-top:1px solid #eee;
+    margin-top:15px;
 }
 
-.sidebar a{
-position:relative;
-display:inline-block;
-text-decoration:none;
-color:#8f8f8f;
-font-size:1.7rem;
-letter-spacing:4px;
-transition:.15s;
-will-change:transform,filter;
+.links a{
+    display:block;
+    padding:10px 15px;
+    color:#666;
+    text-decoration:none;
+    border-bottom:1px solid #eee;
+    font-size:13px;
 }
 
-.sidebar a::before{
-content:'';
-position:absolute;
-inset:-4px -10px;
-background:rgba(255,255,255,.06);
-filter:blur(8px);
-opacity:0;
-pointer-events:none;
-transition:.15s;
+.links a:hover,
+.links a.active{
+    background:#fff5f8;
+    color:#8C6F75;
 }
 
-.sidebar a:hover{
-color:#fff;
-text-shadow:
-10 0 4px rgba(255,255,255,.8),
-0 0 12px rgba(255,255,255,.25);
+/* Right side */
 
-animation:motionBlurFast .22s linear infinite;
+.content{
+    flex:1;
 }
 
-.sidebar a:hover::before{
-opacity:1;
-animation:bgPulseFast .35s ease-in-out infinite alternate;
-}
-
-@keyframes motionBlurFast{
-0%{
-transform:translateX(0);
-filter:blur(.2px);
-}
-
-20%{
-transform:translateX(.3px);
-filter:blur(.8px);
-}
-
-40%{
-transform:translateX(-.3px);
-filter:blur(.3px);
-}
-
-60%{
-transform:translateX(.4px);
-filter:blur(1px);
-}
-
-80%{
-transform:translateX(-.2px);
-filter:blur(.4px);
-}
-
-100%{
-transform:translateX(0);
-filter:blur(.2px);
-}
-}
-
-@keyframes bgPulseFast{
-0%{
-filter:blur(6px);
-opacity:.12;
-}
-
-100%{
-filter:blur(14px);
-opacity:.22;
-}
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-    .page{
-        width:100%;
-    }
-
-}
-
-@media(max-width:700px){
-
-    .title{
-        font-size:3rem;
-    }
-
-    .sidebar a{
-        font-size:1.2rem;
-    }
-
-}
-
-@media (max-width: 768px) {
-    * {
-        max-width: 100% !important;
-    }
-
-    table {
-        display: block !important;
-        overflow-x: auto !important;
-    }
-
-    img,
-    iframe,
-    video {
-        width: 100% !important;
-        height: auto !important;
-    }
-}
-
-
-/* =========================================
-   SIDE PAGES
-========================================= */
+/* Pages */
 
 .page{
-
-    visibility: hidden;
-
-    position:fixed;
-
-    scrollbar-width:none;
-    -ms-overflow-style:none; 
-
-    top:0;
-    right:0;
-
-    width:65%;
-    height:100vh;
-    overflow-y:auto;
-
-    overflow-y:auto;
-
-    transform:translateX(100%);
-
-    transition:
-        transform .3s ease,
-        opacity .3s ease;
-}
-
-    background: transparent;
-
-    border-left: none;
-
-    box-shadow:
-        -40px 0 120px rgba(0,0,0,.55);
-
-    z-index:50;
-    backdrop-filter: blur(4px);
-
-}
-
-.page::-webkit-scrollbar{
-
     display:none;
-
 }
 
 .page.active{
-
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(0);
-
+    display:block;
 }
 
-/* subtle glass */
+/* Posts */
 
-.page::before{
-
-    display:none;
-
+.gallerypost{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
 }
 
-/* content */
-
-.pageContent{
-
-    max-width:900px;
-
-    margin:auto;
-
-    padding:80px;
-
-    color:#d7d7d7;
-
-    line-height:1.9;
-
+.post{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
 }
 
-/* titles */
 
-.page h1{
-
+.post img{
+    width:100%;
+    display:block;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
     user-select: none;
-
-    font-size:3rem;
-
-    font-weight:300;
-
-    letter-spacing:8px;
-
-    margin-bottom:30px;
-
-    color:#f4f4f4;
-
-    opacity:.92;
-
-    text-transform:lowercase;
-
+    pointer-events: none;
 }
 
-/* text */
-
-.page p{
-
-    color:
-    rgba(255,255,255,.75);
-
-    font-size:1rem;
-
-}
-
-/* subtle x */
-
-.closePage{
-
-    position:absolute;
-
-    top:25px;
-    right:25px;
-
-    background:none;
-
-    border:none;
-
-    color:
-    rgba(255,255,255,.18);
-
-    font-size:18px;
-
-    cursor:pointer;
-
-    transition:.15s;
-
-    z-index:100;
-
-}
-
-.closePage:hover{
-
-    color:
-    rgba(255,255,255,.6);
-
-}
-
-/* scrollbar */
-
-.page::-webkit-scrollbar{
-
-    width:4px;
-
-}
-
-.page::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-
-.page::-webkit-scrollbar-thumb{
-
-    background:
-    rgba(255,255,255,.12);
-
-}
-
-.page::-webkit-scrollbar-thumb:hover{
-
-    background:
-    rgba(255,255,255,.28);
-
-}
-
-.box{
-    text-align:center;
-
+.post-content{
     padding:18px;
-
-    margin-bottom:20px;
-
-    border-radius:14px;
 }
 
-/* ---------------- LINK STYLE ---------------- */
+.post h3{
+    color:#998F8A;
+    margin-bottom:10px;
+    font-weight:normal;
+}
 
-.lr-link{
-    position:relative;
-    color:#fff;
-    text-decoration:none;
+.post p{
+    line-height:1.7;
     font-size:14px;
 }
 
-.lr-link::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-3px;
-    width:0%;
-    height:1px;
-    background:rgba(199,92,255,0.9);
-    transition:width 0.4s ease;
+.footer{
+    margin-top:12px;
+    border-top:1px solid #eee;
+    padding-top:10px;
+    font-size:12px;
+    color:#999;
 }
 
-.lr-link:hover::after{
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.gallery img{
     width:100%;
-}
-
-a{
-    color:#ff6fb0;
-    text-decoration:none;
-    transition:0.2s ease;
-}
-
-a:hover{
-    color:#ffffff;
-    text-shadow:
-    0 0 6px #ED64F5,
-    0 0 12px #ff6fb0;
+    border:1px solid #ddd;
 }
 
 /* ---------------- IMAGE ---------------- */
@@ -487,12 +195,8 @@ a:hover{
     width:400px;
     max-width:100%;
 
-    border-radius:14px;
-
     opacity:0.9;
 
-    box-shadow:
-    0 0 24px rgba(237,100,245,0.35);
 }
 
 .zoom-gallery {
@@ -506,13 +210,10 @@ a:hover{
   height: 110px;
   object-fit: cover;
   cursor: inherit;
-  border-radius: 6px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .zoom-gallery img:hover {
   transform: scale(1.08);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
 .zoom-tooltip {
@@ -520,7 +221,6 @@ a:hover{
   background: rgba(0,0,0,0.85);
   color: white;
   padding: 6px 10px;
-  border-radius: 6px;
   font-size: 13px;
   pointer-events: none;
   z-index: 999999;
@@ -581,7 +281,6 @@ a:hover{
   z-index: 4;
   background: rgba(0,0,0,0.5);
   padding: 6px 12px;
-  border-radius: 6px;
 }
 
 .zoom-backdrop {
@@ -591,7 +290,70 @@ a:hover{
   z-index: 1;
 }
 
-/* ---------------- COPYRIGHT BUTTON ---------------- */
+/* ---------------- LINK STYLE ---------------- */
+
+.lr-link.click{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.lr-link.click::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-3px;
+    width:0%;
+    height:1px;
+    background:rgba(199,92,255,0.9);
+    transition:width 0.4s ease;
+}
+
+.lr-link.click:hover::after{
+    width:100%;
+}
+
+a.click{
+    color:#B08692;
+    text-decoration:none;
+}
+
+a.click:hover{
+    color:#E3B3BF;
+}
+
+/* ---------------- MP3 STYLER ---------------- */
+
+audio {
+    width: 100%;
+    height: 52px;
+    padding: 8px;
+
+    background: rgba(255, 120, 160, 0.08);
+
+    border: 1px solid #ff9fb8;
+    border-radius: 0;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 220, 230, 0.25);
+
+    transition: .2s ease;
+}
+
+audio:hover {
+    border-color: #ffb6c8;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(255, 230, 235, 0.35);
+}
+
+/* ---------------- COPYRIGHT ---------------- */
 
 .hint-wrap {
   text-align: center;
@@ -601,327 +363,375 @@ a:hover{
   position: relative;
 }
 
-/* hide checkbox */
-.hint-wrap input {
-  display: none;
+/* ---------------- LINK BOXES ---------------- */
+
+.linktree {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
-/* clickable (c) */
-.hint-toggle {
-user-select: none;
-  cursor: pointer;
-  color: #ccc;
-  transition: color 0.3s ease;
-  font-size: 20px;
-  color: #F527B0;
+.linktree a {
+
+    width: 59px;
+    height: 25px;
+    padding: 5px 10px;
+
+    color: #BD826F;
+    background: #E3E0DA;
+
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+
+    border: 1px solid #ff9fb8;
+    border-radius: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
 }
 
-.hint-toggle:hover {
-  color: #fff;
+.linktree a:hover {
+    background:#856E73;
+    color:#E3BFC5;
 }
 
-/* hidden text */
-.hint-text {
-  display: inline-block;
-  margin-left: 6px;
-  opacity: 0;
-  filter: blur(6px);
-  transform: translateY(2px);
-  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
-  position: relative;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.hint-wrap input:checked ~ .hint-text {
-  opacity: 1;
-  filter: blur(0px);
-  transform: translateY(0px);
-  position: relative;
-  font-size: 11px;
-  line-height: 1.5;
-}
 
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-
-<div class="bg"></div>
-<div class="noise"></div>
-<div class="vignette"></div>
-<div class="flash"></div>
-
-<!-- =========================================
-     MENU
-========================================= -->
-
 <div class="container">
 
-    <div class="title">
-        
+    <!-- Sidebar -->
+
+    <div class="sidebar"> 	
+
+        <div class="profile">
+
+            <h2>kennedi cotarelo</h2>
+
+            <p>
+                my personal website.<br>
+            </p>
+
+            <div class="links">
+                <a href="#" class="active" onclick="showPage(event,'home')">home</a>
+                <a href="#" onclick="showPage(event,'games')">games</a>
+                <a href="#" onclick="showPage(event,'mods')">mods</a>
+                <a href="#" onclick="showPage(event,'software')">software</a>
+                <a href="#" onclick="showPage(event,'articles')">articles</a>
+                <a href="#" onclick="showPage(event,'music')">music</a>
+                <a href="#" onclick="showPage(event,'gallery')">gallery</a>
+                <a href="#" onclick="showPage(event,'about')">about</a>
+            </div>
+
+        </div>
+
     </div>
 
-    <aside class="sidebar">
+    <div class="content">
 
-        <ul>
+        <!-- HOME -->
 
-            <li>
-                <a class="soundLink1"
-                data-page="games">
-                games
-                </a>
-            </li>
+        <section id="home" class="page active">
 
-            <li>
-                <a class="soundLink1"
-                data-page="mods">
-                mods
-                </a>
-            </li>
+            <div class="post">
 
-            <li>
-                <a class="soundLink1"
-                data-page="software">
-                software
-                </a>
-            </li>
+                <img src="images/kenwood.jpg">
 
-            <li>
-                <a class="soundLink1"
-                data-page="articles">
-                articles
-                </a>
-            </li>
+                <div class="post-content">
 
-            <li>
-                <a class="soundLink1"
-                data-page="music">
-                music
-                </a>
-            </li>
+                    <h3>"we've only just begun"</h3>
 
-            <li>
-                <a class="soundLink1"
-                data-page="gallery">
-                gallery
-                </a>
-            </li>
+                    <p>
+                        i know people liked the old layout but i rewrote the whole html for a stable website.<br>
+			the image is from my map 'kenwood ave' - available in mods.
+                    </p>
 
-            <li>
-                <a class="soundLink1"
-                data-page="about">
-                about
-                </a>
-            </li>
+                    <div class="footer">
+                        posted 8/2/2026 (8:50 AM UTC-4)
+                    </div>
 
-        </ul>
+                </div>
 
-    </aside>
+            </div>
 
-</div>
+            <div class="post">
+
+                <div class="post-content">
+
+                    <h3></h3>
+
+                    <p>
+                        i'm going to use home page as a 'news' page.
+                    </p>
+
+                    <div class="footer">
+                        posted 8/2/2026 (7:38 AM UTC-4)
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- GAMES -->
+
+        <section id="games" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
 
 
-
-<div id="pages">
-<section id="games" class="page"><button class="closePage">✕</button><h1>games</h1><div>
-
-            <div class="box">
+            <div class="boxalt">
 	<h3>official games</h3>
 <br>
-<a href="theocraticlight.html" target="_self">Theocratic Light</a>
+<a href="theocraticlight.html" target="_self" class="click">Theocratic Light</a>
 <br><br>
-<a href="destroy.html" target="_self"><span>Destroy: Rebuilt Complete Edition</h3></l></a>
+<a href="destroy.html" target="_self" class="click"><span>Destroy: Rebuilt Complete Edition</h3></l></a>
 <br><br>
-<a href="tenebrific.html" target="_self"><l>Tenebrific - The Dark Hope</hp></l></a>
+<a href="tenebrific.html" target="_self" class="click"><l>Tenebrific - The Dark Hope</hp></l></a>
 <br><br><br>
 	<h3>test games</h3>
 <br>
-<a href="" target="_self"><l>Social Distance Bar Fight (Visual Novel Test)</hp></l></a>
-<br><br>
-<a href="" target="_self"><l>Penumbra Black Plague Demo (Flash Version 2018)</hp></l></a>
+<a href="" target="_self" class="click"><l>Social Distance Bar Fight (Visual Novel Test)</hp></l></a>
+<br>
+<a href="" target="_self" class="click"><l>Penumbra Black Plague Demo (Flash Version 2018)</hp></l></a>
 <br><br>
 <br><br>
                 <br><br>
 
+                </div>
+
             </div>
 
-</div></section>
-<section id="mods" class="page"><button class="closePage">✕</button><h1>mods</h1><div>
+        </section>
 
-           <div class="box">
+        <!-- MODS -->
 
-		<div style="text-align: center;">
-	<h3 class="blink-text">half-life mods</h3>
-<a href="" target="_self">Kiddin' gSource</a>
+        <section id="mods" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+	<h3 class="blink-text">goldsrc mods</h3>
+<br>
+<a href="" target="_self" class="click">Kiddin' gSource</a>
 <br><br>
-<a href="" target="_self">Half-Life: Lambda Collection Remaster</a>
+<a href="" target="_self" class="click">Half-Life: Lambda Collection Remaster</a>
 <br><br>
-<a href="" target="_self">Counter-Strike Purple</a>
+<a href="" target="_self" class="click">Counter-Strike Purple</a>
 <br><br>
-<a href="" target="_self">Vampire Slayer: Chapter VII</a>
-<br><br>
-	<h3 class="blink-text">half-life addons</h3>
-<a href="mods/aesthetic_menu_theme.zip" target="_self">Aesthetic Menu Theme</a>
-<br><br>
-<a href="mods/my_maudlin_career_theme" target="_self">My Maudlin Career Menu Theme</a>
-<br><br>
-<a href="https://github.com/kennedicotarelo/Half-Life-Upscaled-High-Contrast-Textures/releases/tag/release" target="_self">Upscaled High Contrast Textures</a>
-<br><br>
-<a href="mods/cute_sven_co-op_weapons_pack.zip" target="_self">Cute Sven Co-op Weapon Pack</a>
-<br><br>
-<a href="mods/aom_refined_classic_weapons.zip" target="_self">Afraid of Monsters Refined Weapon Pack</a>
-<br><br>
-<a href="mods/cirno_gauss_hand.zip" target="_self">Cirno Gauss Hand</a>
-<br><br>
-<a href="mods/ex-ans_spray.zip" target="_self">EX-ANS Spray</a>
-<br><br>
+<a href="" target="_self" class="click">Vampire Slayer: Chapter VII</a>
+<br><br><br>
 	<h3 class="blink-text">goldsrc maps</h3>
-<a href="mods/fy_rickroll.zip" target="_self">fy_rickroll</a>
+<br>
+<a href="mods/fy_rickroll.zip" target="_self" class="click">fy_rickroll (cs 1.6)</a>
 <br><br>
-<a href="mods/rickroll.zip" target="_self">rickroll</a>
+<a href="mods/rickroll.zip" target="_self" class="click">rickroll</a>
 <br><br>
-<a href="mods/chinadoll.zip" target="_self">chinadoll</a>
+<a href="mods/chinadoll.zip" target="_self" class="click">chinadoll</a>
 <br><br>
-<a href="mods/kenwood.zip" target="_self">500 Kenwood Ave</a>
+<a href="mods/kenwood.zip" target="_self" class="click">500 Kenwood Ave</a>
 <br><br>
-<a href="mods/redmark.zip" target="_self">redmark</a>
+<a href="mods/redmark.zip" target="_self" class="click">redmark</a>
 <br><br>
-<a href="mods/brokenlight.zip" target="_self">brokenlight</a>
+<a href="mods/brokenlight.zip" target="_self" class="click">brokenlight</a>
 <br><br>
-<a href="mods/map1.zip" target="_self">Map1</a>
+<a href="mods/map1.zip" target="_self" class="click">Map1</a>
 <br><br>
-<a href="mods/sewerfoliage.zip" target="_self">sewerfoliage</a>
+<a href="mods/sewerfoliage.zip" target="_self" class="click">sewerfoliage</a>
 <br><br>
-<a href="mods/pitilesscensors.zip" target="_self">pitilesscensors</a>
+<a href="mods/pitilesscensors.zip" target="_self" class="click">pitilesscensors</a>
 <br><br>
-<a href="mods/c1a02020.zip" target="_self">Black Mesa 2020</a>
+<a href="mods/c1a02020.zip" target="_self" class="click">Black Mesa 2020</a>
 <br><br>
-<a href="mods/montparnasse.zip" target="_self">montparnasse</a>
+<a href="mods/montparnasse.zip" target="_self" class="click">montparnasse</a>
 <br><br>
-<a href="mods/calmnight.zip" target="_self">calmnight</a>
+<a href="mods/calmnight.zip" target="_self" class="click">calmnight</a>
 <br><br>
-<a href="mods/comfymental.zip" target="_self">comfymental</a>
+<a href="mods/comfymental.zip" target="_self" class="click">comfymental</a>
 <br><br>
-<a href="mods/emptysickness.zip" target="_self">emptysickness</a>
+<a href="mods/emptysickness.zip" target="_self" class="click">emptysickness</a>
 <br><br>
-<a href="mods/livelysickness.zip" target="_self">livelysickness</a>
+<a href="mods/livelysickness.zip" target="_self" class="click">livelysickness</a>
 <br><br>
-<a href="mods/safecabin.zip" target="_self">safecabin</a>
+<a href="mods/safecabin.zip" target="_self" class="click">safecabin</a>
 <br><br>
-<a href="mods/majortom.zip" target="_self">majortom</a>
+<a href="mods/majortom.zip" target="_self" class="click">majortom</a>
 <br><br>
-<a href="mods/fm_lobby.zip" target="_self">fm_lobby (tfc)</a>
+<a href="mods/fm_lobby.zip" target="_self" class="click">fm_lobby (tfc)</a>
 <br><br>
-<a href="mods/fm_safecabin.7z" target="_self">fm_safecabin (tfc)</a>
+<a href="mods/fm_safecabin.7z" target="_self" class="click">fm_safecabin (tfc)</a>
+<br><br><br>
+	<h3 class="blink-text">half-life addons</h3>
+<br>
+<a href="mods/aesthetic_menu_theme.zip" target="_self" class="click">Aesthetic Menu Theme</a>
 <br><br>
-	<h3 class="blink-text">counter-strike addons</h3>
-<a href="" target="_self">Modern Warfare Weapon Pack (Female Hands)</a>
+<a href="mods/my_maudlin_career_theme" target="_self" class="click">My Maudlin Career Menu Theme</a>
 <br><br>
-<a href="mods/cs_16_css_menu.zip" target="_self">CSS + CS 1.6 Menu Theme</a>
+<a href="https://github.com/kennedicotarelo/Half-Life-Upscaled-High-Contrast-Textures/releases/tag/release" target="_self" class="click">Upscaled High Contrast Textures</a>
 <br><br>
-	<h3 class="blink-text">cry of fear addons</h3>
-<a href="mods/heartbroken_game_over_replacement.zip" target="_self">Heartbroken Game Over Replacement</a>
+<a href="mods/cute_sven_co-op_weapons_pack.zip" target="_self" class="click">Cute Sven Co-op Weapon Pack</a>
 <br><br>
-	<h3 class="blink-text">garry's mod addons</h3>
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3748818096" target="_self">Custom MP3 Player</a>
+<a href="mods/aom_refined_classic_weapons.zip" target="_self" class="click">Afraid of Monsters Refined Weapon Pack</a>
 <br><br>
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747157190" target="_self">Flower HUD</a>
+<a href="mods/cirno_gauss_hand.zip" target="_self" class="click">Cirno Gauss Hand</a>
 <br><br>
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3749257711" target="_self">Psychological Vignette</a>
+<a href="mods/ex-ans_spray.zip" target="_self" class="click">EX-ANS Spray</a>
+<br><br><br>
+	<h3 class="blink-text">counter-strike 1.6</h3>
+<br>
+<a href="" target="_self" class="click">Modern Warfare Weapon Pack (Female Hands)</a>
 <br><br>
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3755214870" target="_self">Wolfenstein Veil Powers</a>
+<a href="mods/cs_16_css_menu.zip" target="_self" class="click">CSS + CS 1.6 Menu Theme</a>
+<br><br><br>
+	<h3 class="blink-text">cry of fear</h3>
+<br>
+<a href="mods/heartbroken_game_over_replacement.zip" target="_self"  class="click">Heartbroken Game Over Replacement</a>
+<br><br><br>
+	<h3 class="blink-text">garry's mod</h3>
+<br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3748818096" target="_self"  class="click">Custom MP3 Player</a>
 <br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747157190" target="_self"  class="click">Flower HUD</a>
+<br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3749257711" target="_self"  class="click">Psychological Vignette</a>
+<br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3755214870" target="_self"  class="click">Wolfenstein Veil Powers</a>
+<br><br><br>
 	<h3 class="blink-text">garry's mod maps</h3>
-<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1085509660" target="_self">Greenfield Sandbox</a>
+<br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1085509660" target="_self"  class="click">Greenfield Sandbox</a>
 <br><br>
                 <br><br>
 
+                </div>
+
             </div>
 
+        </section>
 
-</div></section>
-<section id="software" class="page"><button class="closePage">✕</button><h1>software</h1><div>
+        <!-- SOFTWARE -->
+
+        <section id="software" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
 
 
-            <div class="box">
-
-		<div style="text-align: center;">
+            <div class="boxalt">
 	<h3 class="blink-text">chatting</h3>
-<a href="https://github.com/kennedicotarelo/kedr-desktop-client/releases/tag/kedr" target="_self">Kedr Desktop Client</a>
+<br>
+<a href="https://github.com/kennedicotarelo/kedr-desktop-client/releases/tag/kedr" target="_self" class="click">Kedr Desktop Client</a>
                 <br><br>
-<a href="" target="_self">LanChat</a>
-                <br><br>
+<a href="" target="_self" class="click">LanChat</a>
+                <br><br><br>
 	<h3 class="blink-text">utility</h3>
-<a href="" target="_self">P2P Screen Sharing</a>
+<br>
+<a href="" target="_self" class="click">P2P Screen Sharing</a>
                 <br><br>
-<a href="" target="_self">Personal AES-256 Encryption</a>
+<a href="" target="_self" class="click">Personal AES-256 Encryption</a>
                 <br><br>
-<a href="https://github.com/kennedicotarelo/17s-Buddies-Browser/releases/tag/final" target="_self">17's Buddies Browser</a>
+<a href="https://github.com/kennedicotarelo/17s-Buddies-Browser/releases/tag/final" target="_self" class="click">17's Buddies Browser</a>
                 <br><br>
+
+                </div>
 
             </div>
 
-</div></section>
-<section id="articles" class="page"><button class="closePage">✕</button><h1>articles</h1><div>
+        </section>
 
-            <div class="box">
+        <!-- ARTICLES -->
 
-<div style="text-align: center;">
+        <section id="articles" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
 <h3 class="blink-text">2026</h3>
-<a href="degenerates.html" target="_self">Degenerates</a>
+<br>
+<a href="degenerates.html" target="_self" class="click">Degenerates</a>
 <br><br>
-<a href="declineofindividuality.html" target="_self">Decline of Individuality</a>
+<a href="declineofindividuality.html" target="_self" class="click">Decline of Individuality</a>
 <br><br>
-<a href="toxicityofourcity.html" target="_self">Toxicity of Our City</a>
+<a href="toxicityofourcity.html" target="_self" class="click">Toxicity of Our City</a>
 <br><br>
-<a href="aculturebuiltonattention.html" target="_self">A Culture Built on Attention</a>
+<a href="aculturebuiltonattention.html" target="_self"class="click">A Culture Built on Attention</a>
 <br><br>
-<a href="thefadeofcompleteworlds.html" target="_self">The Fade of Complete Worlds</a>
-                <br><br>
+<a href="thefadeofcompleteworlds.html" target="_self" class="click">The Fade of Complete Worlds</a>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-                <br>
+                </div>
 
             </div>
 
-</div></section>
-<section id="music" class="page"><button class="closePage">✕</button><h1>music</h1><div>
+        </section>
 
-            <div class="box">
+        <!-- MUSIC -->
 
+        <section id="music" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
 <h3 class="blink-text">official music</h3>
-<a href="tracks\kenndii - Give a Life.mp3" target="_self">kenndii - give a life</a>
+<br>
+<a href="tracks\kenndii - Give a Life.mp3" target="_self" class="click">kenndii - give a life</a>
 <p style="font-size: 11px;"> download the original experimental single release here </p>
 
-<br>
+<br><br>
 
-<h3 class="blink-text">official soundtracks</h3>
+<h3 class="blink-text">official soundtracks</h3>	
 
 <p style="font-size: 11px;"> no upload yet </p>
 
-<br>
+<br><br>
 
 <h3 class="blink-text">me playing tracks</h3>
+<br>
 
-<p>promise</p>
+<p>promise (from silent hill 2)</p>
  <audio controls>
   <source src="tracks\promise.mp3" type="audio/mpeg">
 </audio> 
 
 <br><br>
 
-<p>never</p>
+<p>never (from cry of fear)</p>
  <audio controls>
   <source src="tracks\never.mp3" type="audio/mpeg">
 promise
 </audio> 
             </div>
 
-</div></section>
-<section id="gallery" class="page"><button class="closePage">✕</button><h1>gallery</h1><div>
+        </section>
+
+        <!-- GALLERY -->
+
+        <section id="gallery" class="page">
+
+            <div class="gallerypost">
+
+                <div class="post-content">
 
             <div class="box">
 <div class="zoom-gallery">
@@ -930,289 +740,82 @@ promise
   <img src="images/cutie_pie.png" data-title="'cutie pie' (aka outtabox) by andrzej monastyrnyj (2026)">
   <img src="images/masculinfeminen_colorized.jpg" data-title="masculin féminin (1966) - colorize work">
 </div>
-</div></section>
-<section id="about" class="page"><button class="closePage">✕</button><h1>about</h1><div>
 
-           <div class="box">
-<div style="text-align: center; margin: 10px;">
-<b><p>i'm a video game developer/modder, director, writer and composer </p></b>
-<p>
-<l>experiments, and fragments of ideas—some complete, some still unfolding.</l> 
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ABOUT -->
+
+        <section id="about" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+<br>
+<div class="linktree">
+    <a href="https://www.youtube.com/@kennedimcotarelo">youtube</a>
+    <a href="https://bandcamp.com/kennedicotarelo">bandcamp</a>
+    <a href="https://github.com/kennedicotarelo">github</a>
+    <a href="https://kennedi-cotarelo.itch.io/">itch.io</a>
+    <a href="https://matrix.to/#/@poussiere:kedr.io">kedr</a>
+</div>
 <br><br>
-<l>each project is part exploration, part expression, built inside the systems of games <br> and gently pushed beyond them.</l>
-<br>
-<br>
-<l>i primarily create games and mods, alongside writing in areas such as storytelling and philosophy. </l> 
+<b><p class="center">video game developer, director, writer and composer </p></b>
+<br><br><br>
+<l class="center">each project is part exploration, part expression,  <br>built inside the systems of creations and gently pushed beyond them.</l>
+<l>i primarily focus on games and mods, alongside writing in areas such as  <br>storytelling and philosophy. </l> 
 <br>
 <l> i've had experiences in directing from past projects, as well as a strong background <br> in audio engineering, composing. i worked extensively with coding including c#, c++, and LUA.</l>
 <br>
 <br>
-<l> overall i love creating feelings through experiences, it has been my passion since age of seven.</l>
+<l> i love creating feelings through experiences, it has been my passion since age of seven.</l>
 </p>
 <br>
 <br>
-<i><l>sharing my 'art' and art should stay as it is, not as a product.</l></i>
+<i><l>art should stay as it is, not as a product</l></i>
 <br>
 <br>
 <br>
 <br>
 <div class="hint-wrap">
-  <input type="checkbox" id="hint-toggle">
 
-  <label for="hint-toggle" class="hint-toggle"><strong>©</strong></label>
-
-  <span class="hint-text">
-     <l> (2026) kennedi monika cotarelo / defectus® </l> <br> <br>
-
-everything here is made with intention and care, and is meant to be experienced only in its original form. <br> 
-
-my work is exclusive to my uploads—any version found elsewhere has not been shared or authorized by me. <br>
-
-please do not reupload, redistribute, alter, or remix any part of this content without permission. <br>
-
-all third-party materials remain the property of their respective creators.<br>
+     <l> (2026) kennedi monika cotarelo / defectus® </l> <br>
+everything here is made with intention and care, and is meant to be experienced only in its original form <br> 
+my contents are exclusive to my uploads—any upload found elsewhere has not been shared or authorized by me <br>
+please do not reupload, redistribute, alter, or remix any part of this content without permission <br>
+no income is generated from creations, no donations or financial contributions are accepted <br>
+all third-party materials remain the property of their respective creators <br>
   </span>
 </div>
 
-</div></section>
+                </div>
 
-</div>
+            </div>
 
-<!-- AUDIO -->
-
-
-<audio id="bgMusic" loop></audio>
-
-
-<audio id="sound1"
-src="choose.mp3">
-</audio>
+        </section>
 
 <script>
+function showPage(event, pageId){
 
-/* =========================================
-   MOVING BACKGROUND
-========================================= */
+    event.preventDefault();
 
-const noise = document.querySelector(".noise");
-
-if (noise) {
-    let targetX = 0;
-    let currentX = 0;
-
-    document.addEventListener("mousemove", (e) => {
-        targetX = (e.clientX / window.innerWidth - 0.5) * 10;
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
     });
 
-    function animate() {
-        currentX += (targetX - currentX) * 0.03;
+    document.getElementById(pageId).classList.add("active");
 
-        noise.style.backgroundPosition =
-            `calc(50% + ${currentX}px) center`;
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
-
-const container =
-document.querySelector(".container");
-
-container.style.opacity = "1";
-
-/* =========================================
-   BACKGROUND
-========================================= */
-
-const gif = "images/background.jpg";
-
-/* =========================================
-   BG MUSIC
-========================================= */
-
-const audio =
-document.getElementById("bgMusic");
-
-const songs = [
-
-"bgmusic/menu.mp3"
-
-];
-
-function shuffle(arr){
-
-    for(let i = arr.length - 1; i > 0; i--){
-
-        const j =
-        Math.floor(Math.random() * (i + 1));
-
-        [arr[i], arr[j]] =
-        [arr[j], arr[i]];
-    }
-
-    return arr;
-}
-
-const playlist =
-shuffle([...songs]).slice(0,3);
-
-let current = 0;
-
-function fadeInAudio(audio,duration=3000){
-
-    audio.volume = 0;
-
-    audio.play().catch(()=>{});
-
-    const step = 0.05;
-    const interval = duration * step;
-
-    const fade = setInterval(()=>{
-
-        if(audio.volume < 1){
-
-            audio.volume =
-            Math.min(audio.volume + step,1);
-
-        }else{
-
-            clearInterval(fade);
-
-        }
-
-    },interval);
-
-}
-
-function playSong(index){
-
-    audio.src = playlist[index];
-
-    fadeInAudio(audio,3000);
-
-}
-
-document.addEventListener("click",()=>{
-
-    if(!sessionStorage.getItem("musicPlayed")){
-
-        sessionStorage.setItem("musicPlayed","true");
-
-        playSong(current);
-
-    }
-
-},{once:true});
-
-audio.addEventListener("ended",()=>{
-
-    current++;
-
-    if(current < playlist.length){
-
-        playSong(current);
-
-    }
-
-});
-
-/* =========================================
-   BUTTON SOUNDS
-========================================= */
-
-document.querySelectorAll(".soundLink").forEach(link=>{
-
-    link.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        const sound =
-        document.getElementById("sound");
-
-        sound.currentTime = 0;
-
-        sound.play().then(()=>{
-
-            setTimeout(()=>{
-
-                window.location.href =
-                link.href;
-
-            },300);
-
-        });
-
+    document.querySelectorAll(".links a").forEach(link=>{
+        link.classList.remove("active");
     });
 
-});
+    event.currentTarget.classList.add("active");
+}
 
-document.querySelectorAll(".soundLink1").forEach(link=>{
-
-    link.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        const sound =
-        document.getElementById("sound1");
-
-        sound.currentTime = 0;
-
-        sound.play().catch(()=>{});
-
-        document
-        .querySelectorAll(".page")
-        .forEach(page=>{
-
-            page.classList.remove("active");
-
-        });
-
-        document
-        .getElementById(link.dataset.page)
-        .classList.add("active");
-
-    });
-
-});
-
-document.querySelectorAll('.closePage').forEach(btn=>{
- btn.addEventListener('click',()=>btn.closest('.page').classList.remove('active'));
-});
-
-/* =========================================
-   EASY PAGE CLOSE
-========================================= */
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key === "Escape") {
-
-        document
-            .querySelectorAll(".page.active")
-            .forEach(page => {
-                page.classList.remove("active");
-            });
-    }
-});
-
-document.addEventListener("click", (e) => {
-
-    const activePage = document.querySelector(".page.active");
-
-    if (!activePage) return;
-
-    const clickedPage = e.target.closest(".page");
-    const clickedMenu = e.target.closest(".sidebar");
-
-    if (!clickedPage && !clickedMenu) {
-        activePage.classList.remove("active");
-    }
-});
-
-/* =========================================
-   IMAGE VIEWER
-========================================= */
+/*  IMAGE VIEWER  */
 
 const tooltip = document.createElement("div");
 tooltip.className = "zoom-tooltip";
