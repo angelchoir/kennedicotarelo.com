@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>kennedi</title>
+<link rel="icon" type="image/x-icon" href="images/tablogo.ico">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#EDE8EB;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#555;
+    cursor:url("images/cursor.webp") 32 32, auto;
+
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.boxalt{
+    text-align: center;
+}
+
+/* Main layout */
+
+.container{
+    width:980px;
+    margin:40px auto;
+    display:flex;
+    gap:20px;
+}
+
+h3{
+    font-size:15px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+}
+
+.center {
+    text-align: center;
+}
+
+l {
+    display: block;
+    text-align: center;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    border:1px solid #d9d9d9;
+    background:#fff;
+}
+
+.sidebar img{
+    width:100%;
+    display:block;
+}
+
+.profile{
+    padding:15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.profile h2{
+    font-size:18px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+}
+
+.profile p{
+    font-size:13px;
+    line-height:1.5;
+}
+
+.links{
+    border-top:1px solid #eee;
+    margin-top:15px;
+}
+
+.links a{
+    display:block;
+    padding:10px 15px;
+    color:#666;
+    text-decoration:none;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
+
+.links a:hover,
+.links a.active{
+    background:#fff5f8;
+    color:#8C6F75;
+}
+
+/* Right side */
+
+.content{
+    flex:1;
+}
+
+/* Pages */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* Posts */
+
+.gallerypost{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+.post{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+
+.post img{
+    width:100%;
+    display:block;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.post-content{
+    padding:18px;
+}
+
+.post h3{
+    color:#998F8A;
+    margin-bottom:10px;
+    font-weight:normal;
+}
+
+.post p{
+    line-height:1.7;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:12px;
+    border-top:1px solid #eee;
+    padding-top:10px;
+    font-size:12px;
+    color:#999;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.gallery img{
+    width:100%;
+    border:1px solid #ddd;
+}
+
+/* ---------------- IMAGE ---------------- */
+
+.center-img{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+}
+
+.center-img img{
+    width:400px;
+    max-width:100%;
+
+    opacity:0.9;
+
+}
+
+.zoom-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.zoom-gallery img {
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  cursor: inherit;
+}
+
+.zoom-gallery img:hover {
+  transform: scale(1.08);
+}
+
+.zoom-tooltip {
+  position: fixed;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 6px 10px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -120%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.zoom-viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 999999;
+}
+
+.zoom-viewer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+
+  max-width: 90vw;
+  max-height: 90vh;
+
+  width: auto;
+  height: auto;
+
+  z-index: 2;
+
+  user-select: none;
+  pointer-events: auto;
+}
+
+.zoom-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 26px;
+  color: white;
+  cursor: pointer;
+
+  z-index: 3;
+}
+
+.zoom-title {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 16px;
+  font-family: sans-serif;
+  z-index: 4;
+  background: rgba(0,0,0,0.5);
+  padding: 6px 12px;
+}
+
+.zoom-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 1;
+}
+
+/* ---------------- LINK STYLE ---------------- */
+
+.lr-link.click{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.lr-link.click::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-3px;
+    width:0%;
+    height:1px;
+    background:rgba(199,92,255,0.9);
+    transition:width 0.4s ease;
+}
+
+.lr-link.click:hover::after{
+    width:100%;
+}
+
+a.click{
+    color:#B08692;
+    text-decoration:none;
+}
+
+a.click:hover{
+    color:#E3B3BF;
+}
+
+/* ---------------- MP3 STYLER ---------------- */
+
+audio {
+    width: 100%;
+    height: 52px;
+    padding: 8px;
+
+    background: rgba(255, 120, 160, 0.08);
+
+    border: 1px solid #ff9fb8;
+    border-radius: 0;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 220, 230, 0.25);
+
+    transition: .2s ease;
+}
+
+audio:hover {
+    border-color: #ffb6c8;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 1px rgba(255, 230, 235, 0.35);
+}
+
+/* ---------------- COPYRIGHT ---------------- */
+
+.hint-wrap {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* ---------------- LINK BOXES ---------------- */
+
+.linktree {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.linktree a {
+
+    width: 59px;
+    height: 25px;
+    padding: 5px 10px;
+
+    color: #BD826F;
+    background: #E3E0DA;
+
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+
+    border: 1px solid #ff9fb8;
+    border-radius: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
+.linktree a:hover {
+    background:#856E73;
+    color:#E3BFC5;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar"> 	
+
+        <div class="profile">
+
+            <h2>kennedi cotarelo</h2>
+
+            <p>
+                my personal website.<br>
+            </p>
+
+            <div class="links">
+                <a href="#" class="active" onclick="showPage(event,'home')">home</a>
+                <a href="#" onclick="showPage(event,'games')">games</a>
+                <a href="#" onclick="showPage(event,'mods')">mods</a>
+                <a href="#" onclick="showPage(event,'software')">software</a>
+                <a href="#" onclick="showPage(event,'articles')">articles</a>
+                <a href="#" onclick="showPage(event,'music')">music</a>
+                <a href="#" onclick="showPage(event,'gallery')">gallery</a>
+                <a href="#" onclick="showPage(event,'about')">about</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <!-- HOME -->
+
+        <section id="home" class="page active">
+
+
+            <div class="post">
+
+                <div class="post-content">
+
+                    <h3></h3>
+
+                    <p>
+                        300,000 years since the first human existence... and still not a single progress about kindness. <br> that's the way it is. another <a href= "calumnysdominion.html" class="click">article</a>.
+                    </p>
+
+                    <div class="footer">
+                        posted 8/2/2026
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="post">
+
+                <img src="images/posts/kenwood.jpg">
+
+                <div class="post-content">
+
+                    <h3>"we've only just begun"</h3>
+
+                    <p>
+                        i know people liked the old layout but i rewrote the whole html for a stable website.<br>
+			the image is from my map '<a href= "https://www.youtube.com/watch?v=ABng7_Z7B3M" class="click">kenwood ave</a>' - available in mods.
+                    </p>
+
+                    <div class="footer">
+                        posted 8/2/2026
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="post">
+
+                <div class="post-content">
+
+                    <h3></h3>
+
+                    <p>
+                        i'm going to use home page as 'news' page.
+                    </p>
+
+                    <div class="footer">
+                        posted 8/2/2026
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- GAMES -->
+
+        <section id="games" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+	<h3>official games</h3>
+<br>
+<a href="theocraticlight.html" target="_self" class="click">Theocratic Light</a>
+<br><br>
+<a href="destroy.html" target="_self" class="click"><span>Destroy: Rebuilt Complete Edition</h3></l></a>
+<br><br>
+<a href="tenebrific.html" target="_self" class="click"><l>Tenebrific - The Dark Hope</hp></l></a>
+<br><br><br>
+	<h3>test games</h3>
+<br>
+<a href="" target="_self" class="click"><l>Social Distance Bar Fight (Visual Novel Test)</hp></l></a>
+<br>
+<a href="" target="_self" class="click"><l>Penumbra Black Plague Demo (Flash Version 2018)</hp></l></a>
+<br><br>
+<br><br>
+                <br><br>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MODS -->
+
+        <section id="mods" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+	<h3 class="blink-text">goldsrc mods</h3>
+<br>
+<a href="" target="_self" class="click">Kiddin' gSource</a>
+<br><br>
+<a href="" target="_self" class="click">Half-Life: Lambda Collection Remaster</a>
+<br><br>
+<a href="" target="_self" class="click">Counter-Strike Purple</a>
+<br><br>
+<a href="" target="_self" class="click">Vampire Slayer: Chapter VII</a>
+<br><br><br>
+	<h3 class="blink-text">goldsrc maps</h3>
+<br>
+<a href="mods/fy_rickroll.zip" target="_self" class="click">fy_rickroll (cs 1.6)</a>
+<br><br>
+<a href="mods/rickroll.zip" target="_self" class="click">rickroll</a>
+<br><br>
+<a href="mods/chinadoll.zip" target="_self" class="click">chinadoll</a>
+<br><br>
+<a href="mods/kenwood.zip" target="_self" class="click">500 Kenwood Ave</a>
+<br><br>
+<a href="mods/redmark.zip" target="_self" class="click">redmark</a>
+<br><br>
+<a href="mods/brokenlight.zip" target="_self" class="click">brokenlight</a>
+<br><br>
+<a href="mods/map1.zip" target="_self" class="click">Map1</a>
+<br><br>
+<a href="mods/sewerfoliage.zip" target="_self" class="click">sewerfoliage</a>
+<br><br>
+<a href="mods/pitilesscensors.zip" target="_self" class="click">pitilesscensors</a>
+<br><br>
+<a href="mods/c1a02020.zip" target="_self" class="click">Black Mesa 2020</a>
+<br><br>
+<a href="mods/montparnasse.zip" target="_self" class="click">montparnasse</a>
+<br><br>
+<a href="mods/calmnight.zip" target="_self" class="click">calmnight</a>
+<br><br>
+<a href="mods/comfymental.zip" target="_self" class="click">comfymental</a>
+<br><br>
+<a href="mods/emptysickness.zip" target="_self" class="click">emptysickness</a>
+<br><br>
+<a href="mods/livelysickness.zip" target="_self" class="click">livelysickness</a>
+<br><br>
+<a href="mods/safecabin.zip" target="_self" class="click">safecabin</a>
+<br><br>
+<a href="mods/majortom.zip" target="_self" class="click">majortom</a>
+<br><br>
+<a href="mods/fm_lobby.zip" target="_self" class="click">fm_lobby (tfc)</a>
+<br><br>
+<a href="mods/fm_safecabin.7z" target="_self" class="click">fm_safecabin (tfc)</a>
+<br><br><br>
+	<h3 class="blink-text">half-life addons</h3>
+<br>
+<a href="mods/aesthetic_menu_theme.zip" target="_self" class="click">Aesthetic Menu Theme</a>
+<br><br>
+<a href="mods/my_maudlin_career_theme" target="_self" class="click">My Maudlin Career Menu Theme</a>
+<br><br>
+<a href="https://github.com/kennedicotarelo/Half-Life-Upscaled-High-Contrast-Textures/releases/tag/release" target="_self" class="click">Upscaled High Contrast Textures</a>
+<br><br>
+<a href="mods/cute_sven_co-op_weapons_pack.zip" target="_self" class="click">Cute Sven Co-op Weapon Pack</a>
+<br><br>
+<a href="mods/aom_refined_classic_weapons.zip" target="_self" class="click">Afraid of Monsters Refined Weapon Pack</a>
+<br><br>
+<a href="mods/cirno_gauss_hand.zip" target="_self" class="click">Cirno Gauss Hand</a>
+<br><br>
+<a href="mods/ex-ans_spray.zip" target="_self" class="click">EX-ANS Spray</a>
+<br><br><br>
+	<h3 class="blink-text">counter-strike 1.6</h3>
+<br>
+<a href="" target="_self" class="click">Modern Warfare Weapon Pack (Female Hands)</a>
+<br><br>
+<a href="mods/cs_16_css_menu.zip" target="_self" class="click">CSS + CS 1.6 Menu Theme</a>
+<br><br><br>
+	<h3 class="blink-text">cry of fear</h3>
+<br>
+<a href="mods/heartbroken_game_over_replacement.zip" target="_self"  class="click">Heartbroken Game Over Replacement</a>
+<br><br><br>
+	<h3 class="blink-text">garry's mod</h3>
+<br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3748818096" target="_self"  class="click">Custom MP3 Player</a>
+<br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747157190" target="_self"  class="click">Flower HUD</a>
+<br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3749257711" target="_self"  class="click">Psychological Vignette</a>
+<br><br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3755214870" target="_self"  class="click">Wolfenstein Veil Powers</a>
+<br><br><br>
+	<h3 class="blink-text">garry's mod maps</h3>
+<br>
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1085509660" target="_self"  class="click">Greenfield Sandbox</a>
+<br><br>
+                <br><br>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SOFTWARE -->
+
+        <section id="software" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+	<h3 class="blink-text">chatting</h3>
+<br>
+<a href="https://github.com/kennedicotarelo/kedr-desktop-client/releases/tag/kedr" target="_self" class="click">Kedr Desktop Client</a>
+                <br><br>
+<a href="" target="_self" class="click">LanChat</a>
+                <br><br><br>
+	<h3 class="blink-text">utility</h3>
+<br>
+<a href="" target="_self" class="click">P2P Screen Sharing</a>
+                <br><br>
+<a href="" target="_self" class="click">Personal AES-256 Encryption</a>
+                <br><br>
+<a href="https://github.com/kennedicotarelo/17s-Buddies-Browser/releases/tag/final" target="_self" class="click">17's Buddies Browser</a>
+                <br><br>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ARTICLES -->
+
+        <section id="articles" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+<h3 class="blink-text">2026</h3>
+<br>
+<a href="factions.html" target="_self" class="click">Factions</a>
+<br><br>
+<a href="calumnysdominion.html" target="_self" class="click">Calumny's Dominion</a>
+<br><br>
+<a href="degenerates.html" target="_self" class="click">Degenerates</a>
+<br><br>
+<a href="declineofindividuality.html" target="_self" class="click">Decline of Individuality</a>
+<br><br>
+<a href="toxicityofourcity.html" target="_self" class="click">Toxicity of Our City</a>
+<br><br>
+<a href="aculturebuiltonattention.html" target="_self"class="click">A Culture Built on Attention</a>
+<br><br>
+<a href="thefadeofcompleteworlds.html" target="_self" class="click">The Fade of Complete Worlds</a>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- MUSIC -->
+
+        <section id="music" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+
+
+            <div class="boxalt">
+<h3 class="blink-text">official music</h3>
+<br>
+<a href="tracks\kenndii - Give a Life.mp3" target="_self" class="click">kenndii - give a life</a>
+<p style="font-size: 11px;"> download the original experimental single release here </p>
+
+<br><br>
+
+<h3 class="blink-text">official soundtracks</h3>	
+
+<p style="font-size: 11px;"> no upload yet </p>
+
+<br><br>
+            </div>
+
+        </section>
+
+        <!-- GALLERY -->
+
+        <section id="gallery" class="page">
+
+            <div class="gallerypost">
+
+                <div class="post-content">
+
+            <div class="box">
+<div class="zoom-gallery">
+  <img src="images/fadinglifeoriginal.jpg" data-title="'fading life' cover without title">
+  <img src="images/outtabox.jpg" data-title="'kenken out of box' by celine (2026)">
+  <img src="images/cutie_pie.png" data-title="'cutie pie' (aka outtabox) by andrzej monastyrnyj (2026)">
+  <img src="images/masculinfeminen_colorized.jpg" data-title="masculin féminin (1966) - colorize work">
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ABOUT -->
+
+        <section id="about" class="page">
+
+            <div class="post">
+
+                <div class="post-content">
+<br>
+<div class="linktree">
+    <a href="https://www.youtube.com/@kennedimcotarelo">youtube</a>
+    <a href="https://bandcamp.com/kennedicotarelo">bandcamp</a>
+    <a href="https://steamcommunity.com/id/perfumedflowers">steam</a>
+    <a href="https://github.com/kennedicotarelo">github</a>
+    <a href="https://www.etsy.com/people/1y7bvczyjp4t15je">etsy</a>
+    <a href="https://kennedi-cotarelo.itch.io/">itch.io</a>
+    <a href="https://kennedicotarelo.github.io/perfumedflowers/">reviews</a>
+</div>
+<br><br>
+<b><p class="center">game developer, director, writer and composer </p></b>
+<br><br><br>
+<l class="center">each project is part exploration, part expression,  <br>built inside the systems of creations and gently pushed beyond them.</l>
+<l>i primarily focus on games and mods, alongside writing in areas such as  <br>storytelling and philosophy. </l> 
+<br>
+<l> i've had experiences in directing from past projects, as well as a strong background <br> in audio engineering, composing. i worked extensively with coding including c#, c++, and LUA.</l>
+<br>
+<br>
+<l> i love creating feelings through experiences, it has been my passion since age of seven.</l>
+</p>
+<br>
+<br>
+<i><l>art should stay as it is, not as a product</l></i>
+<br>
+<br>
+<br>
+<br>
+<div class="hint-wrap">
+
+     <l> (2026) kennedi monika cotarelo / defectus® </l> <br>
+everything here is made with intention and care, and is meant to be experienced only in its original form <br> 
+my contents are exclusive to my uploads—any upload found elsewhere has not been shared or authorized by me <br>
+please do not reupload, redistribute, alter, or remix any part of this content without permission <br>
+no income is generated from creations, no donations or financial contributions are accepted <br>
+all third-party materials remain the property of their respective creators <br>
+  </span>
+</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+<script>
+function showPage(event, pageId){
+
+    event.preventDefault();
+
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    document.querySelectorAll(".links a").forEach(link=>{
+        link.classList.remove("active");
+    });
+
+    event.currentTarget.classList.add("active");
+}
+
+/*  IMAGE VIEWER  */
+
+const tooltip = document.createElement("div");
+tooltip.className = "zoom-tooltip";
+document.body.appendChild(tooltip);
+
+function showTooltip(e, text) {
+  tooltip.textContent = text || "";
+  tooltip.style.left = e.clientX + "px";
+  tooltip.style.top = e.clientY + "px";
+  tooltip.style.opacity = "1";
+}
+
+function hideTooltip() {
+  tooltip.style.opacity = "0";
+}
+
+(function () {
+
+  function createViewer(src, title) {
+
+    const viewer = document.createElement("div");
+    viewer.className = "zoom-viewer";
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "zoom-backdrop";
+
+    const img = document.createElement("img");
+    img.src = src;
+
+    const closeBtn = document.createElement("div");
+    closeBtn.className = "zoom-close";
+    closeBtn.textContent = "✕";
+
+    const titleEl = document.createElement("div");
+    titleEl.className = "zoom-title";
+    titleEl.textContent = title || "";
+
+    viewer.appendChild(backdrop);
+    viewer.appendChild(img);
+    viewer.appendChild(closeBtn);
+    viewer.appendChild(titleEl);
+
+    document.body.appendChild(viewer);
+
+viewer.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+img.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+    let scale = 1;
+    let x = 0;
+    let y = 0;
+
+
+function render() {
+  img.style.transform =
+    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
+}
+
+    function close() {
+      viewer.remove();
+    }
+
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      close();
+    });
+
+	backdrop.addEventListener("click", (e) => {
+ 	 e.preventDefault();
+ 	 e.stopPropagation();
+ 	 close();
+	});
+
+    viewer.addEventListener("wheel", (e) => {
+      e.preventDefault();
+
+      const step = 0.15;
+      scale += (e.deltaY < 0 ? 1 : -1) * step;
+      scale = Math.max(1, Math.min(6, scale));
+
+      render();
+    }, { passive: false });
+
+    render();
+  }
+
+  document.querySelectorAll(".zoom-gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      createViewer(img.src, img.dataset.title);
+    });
+  });
+
+})();
+
+document.querySelectorAll(".zoom-gallery img").forEach(img => {
+
+  img.addEventListener("mouseenter", (e) => {
+    showTooltip(e, img.dataset.title);
+  });
+
+  img.addEventListener("mousemove", (e) => {
+    showTooltip(e, img.dataset.title);
+  });
+
+  img.addEventListener("mouseleave", hideTooltip);
+
+});
+
+</script>
+
+</body>
+</html>

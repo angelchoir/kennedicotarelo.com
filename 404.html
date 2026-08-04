@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>kennedi 404</title>
+<link rel="icon" type="image/x-icon" href="images/tablogo.ico">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#EDE8EB;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#555;
+    cursor:url("images/cursor.webp") 32 32, auto;
+
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Main layout */
+
+.container{
+    width:980px;
+    margin:40px auto;
+    display:flex;
+    gap:20px;
+}
+
+h3{
+    font-size:15px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+}
+
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    border:1px solid #d9d9d9;
+    background:#fff;
+}
+
+.profile{
+    padding:15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.profile h2{
+    font-size:18px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+}
+
+.profile p{
+    font-size:13px;
+    line-height:1.5;
+}
+
+.links{
+    border-top:1px solid #eee;
+    margin-top:15px;
+}
+
+.links a{
+    display:block;
+    padding:10px 15px;
+    color:#666;
+    text-decoration:none;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
+
+.links a:hover,
+.links a.active{
+    background:#fff5f8;
+    color:#8C6F75;
+}
+
+/* Right side */
+
+.content{
+    flex:1;
+}
+
+/* Pages */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* Posts */
+
+.post{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+
+.post-content{
+    padding:18px;
+}
+
+.post h3{
+    color:#998F8A;
+    margin-bottom:10px;
+    font-weight:normal;
+}
+
+.post p{
+    line-height:1.7;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar"> 	
+
+        <div class="profile">
+
+            <h2>kennedi cotarelo</h2>
+
+            <p>
+                my personal website.<br>
+            </p>
+
+            <div class="links">
+                <a href="index.html">← home</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <section id="home" class="page active">
+
+
+            <div class="post">
+
+                <div class="post-content">
+
+                    <h3>404</h3>
+
+                    <p>
+                        no such page.
+                    </p>
+
+                </div>
+            </div>
+       </div>
+</body>
+</html>
