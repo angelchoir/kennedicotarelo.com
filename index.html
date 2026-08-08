@@ -401,9 +401,20 @@ audio:hover {
 }
 
 
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
 </style>
 </head>
-
+<audio id="backgroundMusic" autoplay loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 <body>
 
 <div class="container">
@@ -440,6 +451,25 @@ audio:hover {
         <!-- HOME -->
 
         <section id="home" class="page active">
+
+
+           <div class="post">
+
+                <div class="post-content">
+
+                    <h3></h3>
+
+                    <p>
+                        for this whole journey it was all about kindness and friends. the people however, had mutual thoughts. which has lead to a failure. relationships don't last long if people fake their intentions and close their hearts. with my innocent thoughts in the past all i wanted was some friends, of course that wasn't their mutual thought. i did not attempt to these because i was stupid, i kept going because i wanted to believe. all of these had made me strong but everyone needs love, that's how those people stand. even they get love from their favored people. it's not something you can realize all the time. i try to believe there's something good left, but it's getting harder after each interaction. i've stopped communicating online but real life isn't much any different. yet here we are, years apart from what we've been through. still the 'hope' exists as long as we breathe. because there is no other choice. i know i've made a history on a lot of things - some without anyone to notice. i know a lot of people admire the things i've done. but i wish it was more than admiring. i hope for the ones who knew me very well would project my kindess into someone else just as i've done to them. there's still a beauty in that.
+                    </p>
+
+                    <div class="footer">
+                        posted 8/8/2026
+                    </div>
+
+                </div>
+
+            </div>
 
 
             <div class="post">
@@ -811,7 +841,13 @@ all third-party materials remain the property of their respective creators <br>
 
         </section>
 
+
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
 <script>
+
 function showPage(event, pageId){
 
     event.preventDefault();
@@ -940,6 +976,18 @@ document.querySelectorAll(".zoom-gallery img").forEach(img => {
 
   img.addEventListener("mouseleave", hideTooltip);
 
+});
+
+/*  BACKGROUND MUSIC  */
+
+const music = document.getElementById("backgroundMusic");
+
+document.addEventListener("click", () => {
+    music.play();
+}, { once: true });
+
+window.addEventListener("load", () => {
+    music.play().catch(() => {});
 });
 
 </script>
