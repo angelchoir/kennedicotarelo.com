@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>kennedi</title>
+<link rel="icon" type="image/x-icon" href="images/tablogo.ico">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#EDE8EB;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#555;
+    cursor:url("images/cursor.webp") 32 32, auto;
+
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.boxalt{
+    text-align: center;
+}
+
+/* Main layout */
+
+.container{
+    width:980px;
+    margin:40px auto;
+    display:flex;
+    gap:20px;
+}
+
+h3{
+    font-size:17px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+    text-align: center;
+}
+
+h4{
+    font-size:13px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+    text-align: center;
+}
+
+.datecenter{
+    font-size:13px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+    text-align: center;
+}
+
+
+.center {
+    text-align: center;
+}
+
+l {
+    display: block;
+    text-align: center;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    border:1px solid #d9d9d9;
+    background:#fff;
+}
+
+.sidebar img{
+    width:100%;
+    display:block;
+}
+
+.profile{
+    padding:15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.profile h2{
+    font-size:18px;
+    color:#C2A5AB;
+    margin-bottom:10px;
+    text-align: center;
+}
+
+.profile p{
+    font-size:13px;
+    line-height:1.5;
+}
+
+.links{
+    margin-top:15px;
+    padding-top:5px;
+    border-top:1px solid #eee;
+    text-align:center;
+    line-height:1;
+}
+
+.links a{
+    display:inline-block;
+    padding:7px 9px;
+    margin:0;
+    color:#8C6F75;
+    text-decoration:underline;
+    border:0;
+    background:none;
+    font-size:13px;
+    font-weight:normal;
+    vertical-align:middle;
+}
+
+.links a:hover,
+.links a.active{
+    color:#8C6F75;
+    background:#fffafb;
+    text-decoration:none;
+}
+
+/* Right side */
+
+.content{
+    flex:1;
+}
+
+/* Pages */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* Posts */
+
+.gallerypost{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+.post{
+    border:1px solid #d9d9d9;
+    margin-bottom:18px;
+    background:#fff;
+}
+
+
+.post img{
+    width:100%;
+    display:block;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+.post-content{
+    padding:18px;
+}
+
+.post h3{
+    color:#998F8A;
+    margin-bottom:10px;
+    font-weight:normal;
+}
+
+.post p{
+    line-height:1.7;
+    font-size:14px;
+}
+
+.footer{
+    margin-top:12px;
+    border-top:1px solid #eee;
+    padding-top:10px;
+    font-size:12px;
+    color:#999;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.gallery img{
+    width:100%;
+    border:1px solid #ddd;
+}
+
+/* ---------------- LINK STYLE ---------------- */
+
+.lr-link.click{
+    position:relative;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.lr-link.click::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-3px;
+    width:0%;
+    height:1px;
+    background:rgba(199,92,255,0.9);
+    transition:width 0.4s ease;
+}
+
+.lr-link.click:hover::after{
+    width:100%;
+}
+
+a.click{
+    color:#B08692;
+    text-decoration:none;
+}
+
+a.click:hover{
+    color:#E3B3BF;
+}
+
+/* ---------------- PROFILE PICTURE ---------------- */
+
+.profile-pic {
+  width: 124px !important;
+  height: 124px !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+
+
+/* ---------------- LOGO ---------------- */
+
+.logo-container {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar"> 	
+
+        <div class="profile">
+
+            <img
+              src="images/profile.jpg"
+              alt="Profile picture"
+              class="profile-pic">
+
+            <h2>kennedi cotarelo</h2>
+            <p style="text-align: center;">
+                personal website<br>
+            </p>
+
+            <br><br><br><br><br>
+            <div class="links">
+                <a href="index.html">← home</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="content">
+
+            <div class="post">
+
+                <div class="post-content">
+
+                    <h3>Theocratic Light</h3>
+	      <p class="datecenter"">status: WIP</p>
+
+<div class="logo-container">
+    <img src="images/games_mods/theocratic/theocraticicon.png">
+</div>
+			<br>
+			<br>
+			<br>
+<p> Theocratic Light is narritive story about letting go of your past.</p>
+<p> No matter how painful the memories you have, eventually you'll have to let go, or drown in the past. <br> Try to find comfort in the past's shining light on present. Let them remain as a memory.</p>
+<br>
+<p> The protagonist returns to their childhood place after long set of years. Reliving the past memories, but the memories will become hostile. Manipulating echos from the past while walking and reminiscing, the protagonist have to resist the past's infulence. </p>
+<br>
+<p>work in progress.</p>
+<br>
+<p>(Defectus 2017-2026)</p>
+<br>
+
+                </div>
+
+            </div>
+
+        </section>
+
+</body>
+</html>
