@@ -6,429 +6,185 @@
 
 <title>kennedi</title>
 <link rel="icon" type="image/x-icon" href="images/tablogo.ico">
+<link rel="stylesheet" href="style.css">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
 
-body{
-    background:#EDE8EB;
-    font-family:Arial, Helvetica, sans-serif;
-    color:#555;
-    cursor:url("images/cursor.webp") 32 32, auto;
+/* ---------------- INTRO LOADING ---------------- */
 
-    background-image: url("");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-.boxalt{
-    text-align: center;
-}
-
-/* Main layout */
-
-.container{
-    width:980px;
-    margin:40px auto;
-    display:flex;
-    gap:20px;
-}
-
-h3{
-    font-size:15px;
-    color:#C2A5AB;
-    margin-bottom:10px;
-}
-
-.center {
-    text-align: center;
-}
-
-l {
-    display: block;
-    text-align: center;
-}
-
-/* Sidebar */
-
-.sidebar{
-    width:220px;
-    border:1px solid #d9d9d9;
-    background:#fff;
-}
-
-.sidebar img{
-    width:100%;
-    display:block;
-}
-
-.profile{
-    padding:15px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.profile h2{
-    font-size:18px;
-    color:#C2A5AB;
-    margin-bottom:10px;
-    text-align: center;
-}
-
-.profile p{
-    font-size:13px;
-    line-height:1.5;
-}
-
-.links{
-    margin-top:15px;
-    padding-top:5px;
-    border-top:1px solid #eee;
-    text-align:center;
-    line-height:1;
-}
-
-.links a{
-    display:inline-block;
-    padding:7px 9px;
-    margin:0;
-    color:#8C6F75;
-    text-decoration:underline;
-    border:0;
-    background:none;
-    font-size:13px;
-    font-weight:normal;
-    vertical-align:middle;
-}
-
-.links a:hover,
-.links a.active{
-    color:#8C6F75;
-    background:#fffafb;
-    text-decoration:none;
-}
-
-/* Right side */
-
-.content{
-    flex:1;
-}
-
-/* Pages */
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
-}
-
-/* Posts */
-
-.gallerypost{
-    border:1px solid #d9d9d9;
-    margin-bottom:18px;
-    background:#fff;
-}
-
-.post{
-    border:1px solid #d9d9d9;
-    margin-bottom:18px;
-    background:#fff;
-}
-
-
-.post img{
-    width:100%;
-    display:block;
-    -webkit-user-drag: none;
-    user-drag: none;
-    -webkit-user-select: none;
-    user-select: none;
-    pointer-events: none;
-}
-
-.post-content{
-    padding:18px;
-}
-
-.post h3{
-    color:#998F8A;
-    margin-bottom:10px;
-    font-weight:normal;
-}
-
-.post p{
-    line-height:1.7;
-    font-size:14px;
-}
-
-.footer{
-    margin-top:12px;
-    border-top:1px solid #eee;
-    padding-top:10px;
-    font-size:12px;
-    color:#999;
-}
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.gallery img{
-    width:100%;
-    border:1px solid #ddd;
-}
-
-/* ---------------- IMAGE ---------------- */
-
-.center-img{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:20px;
-}
-
-.center-img img{
-    width:400px;
-    max-width:100%;
-
-    opacity:0.9;
-
-}
-
-.zoom-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.zoom-gallery img {
-  width: 160px;
-  height: 110px;
-  object-fit: cover;
-  cursor: inherit;
-}
-
-.zoom-gallery img:hover {
-  transform: scale(1.08);
-}
-
-.zoom-tooltip {
-  position: fixed;
-  background: rgba(0,0,0,0.85);
-  color: white;
-  padding: 6px 10px;
-  font-size: 13px;
-  pointer-events: none;
-  z-index: 999999;
-  transform: translate(-50%, -120%);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.zoom-viewer {
+#k-intro {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+
+  background: #000;
+
   display: flex;
-  justify-content: center;
   align-items: center;
-  overflow: hidden;
-  z-index: 999999;
+  justify-content: center;
+
+  transition: opacity .5s ease;
 }
 
-.zoom-viewer img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center;
-
-  max-width: 90vw;
-  max-height: 90vh;
-
-  width: auto;
-  height: auto;
-
-  z-index: 2;
-
-  user-select: none;
-  pointer-events: auto;
+#k-intro.hide {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.zoom-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 26px;
-  color: white;
-  cursor: pointer;
 
-  z-index: 3;
-}
-
-.zoom-title {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 16px;
-  font-family: sans-serif;
-  z-index: 4;
-  background: rgba(0,0,0,0.5);
-  padding: 6px 12px;
-}
-
-.zoom-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  z-index: 1;
-}
-
-/* ---------------- LINK STYLE ---------------- */
-
-.lr-link.click{
-    position:relative;
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-}
-
-.lr-link.click::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-3px;
-    width:0%;
-    height:1px;
-    background:rgba(199,92,255,0.9);
-    transition:width 0.4s ease;
-}
-
-.lr-link.click:hover::after{
-    width:100%;
-}
-
-a.click{
-    color:#B08692;
-    text-decoration:none;
-}
-
-a.click:hover{
-    color:#E3B3BF;
-}
-
-/* ---------------- MP3 STYLER ---------------- */
-
-audio {
-    width: 100%;
-    height: 52px;
-    padding: 8px;
-
-    background: rgba(255, 120, 160, 0.08);
-
-    border: 1px solid #ff9fb8;
-    border-radius: 0;
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    box-shadow:
-        0 6px 18px rgba(0, 0, 0, 0.15),
-        inset 0 0 0 1px rgba(255, 220, 230, 0.25);
-
-    transition: .2s ease;
-}
-
-audio:hover {
-    border-color: #ffb6c8;
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18),
-        inset 0 0 0 1px rgba(255, 230, 235, 0.35);
-}
-
-/* ---------------- COPYRIGHT ---------------- */
-
-.hint-wrap {
-  text-align: center;
-  font-size: 12px;
-  color: #aaa;
-  line-height: 1.6;
+.k-logo {
   position: relative;
+
+  width: 42px;
+  height: 54px;
+
+  margin: 0 auto 24px;
+
+  image-rendering: pixelated;
 }
 
-/* ---------------- LINK BOXES ---------------- */
-
-.linktree {
-    display: flex;
-    justify-content: flex-start;
-    gap: 8px;
-    flex-wrap: wrap;
-    width: 210px;
-    margin: 0 auto;
-}
-
-.linktree a {
-    box-sizing: border-box;
-    width: 58px;
-    height: 25px;
-    padding: 5px 10px;
-
-    color: #BD826F;
-    background: #E3E0DA;
-
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 11px;
-
-    border: 1px solid #ff9fb8;
-    border-radius: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    flex-shrink: 0;
-}
-
-.linktree a:hover {
-    background:#856E73;
-    color:#E3BFC5;
-}
-
-/* ---------------- PROFILE PICTURE ---------------- */
-
-.profile-pic {
-  width: 124px !important;
-  height: 124px !important;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+.k-logo span {
+  position: absolute;
   display: block;
-  flex-shrink: 0;
-  margin: 0 auto;
+
+  background: #bbb;
 }
 
 
+.k-v {
+  left: 3px;
+  top: 1px;
+
+  width: 2px;
+  height: 52px;
+}
+
+
+.k-top {
+  left: 4px;
+  top: 27px;
+
+  width: 36px;
+  height: 2px;
+
+  transform: rotate(-43deg);
+  transform-origin: left center;
+}
+
+
+.k-bottom {
+  left: 4px;
+  top: 27px;
+
+  width: 36px;
+  height: 2px;
+
+  transform: rotate(43deg);
+  transform-origin: left center;
+}
+
+
+.loading-bar {
+  width: 150px;
+  height: 7px;
+
+  border: 1px solid #555;
+
+  padding: 1px;
+
+  background: #080808;
+}
+
+.loading-fill {
+  width: 0;
+  height: 100%;
+
+  background: #aaa;
+
+  animation: load 1.4s steps(14) forwards;
+}
+
+@keyframes load {
+  to {
+    width: 100%;
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .loading-bar {
+    width: 120px;
+  }
+}
+
+/* ---------------- PLAYING TRACK ---------------- */
+
+#now-playing {
+    position: fixed;
+    left: 0;
+    bottom: 12px;
+
+    width: 100%;
+    overflow: hidden;
+
+    z-index: 1000;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    letter-spacing: .08em;
+
+    color: #777;
+
+    white-space: nowrap;
+  }
+
+  #now-playing-track {
+    display: flex;
+    width: max-content;
+
+    animation: nowPlaying 18s linear infinite;
+  }
+
+  #now-playing-track span {
+    padding-right: 80px;
+  }
+
+  @keyframes nowPlaying {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
 </style>
+
 </head>
 
 <body>
+<div id="k-intro">
+
+  <div class="k-loading">
+
+    <div class="k-logo">
+      <span class="k-v"></span>
+      <span class="k-top"></span>
+      <span class="k-bottom"></span>
+    </div>
+
+    <div class="loading-bar">
+      <div class="loading-fill"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<audio id="site-music" preload="auto" loop>
+  <source src="vtm.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
 
@@ -453,15 +209,13 @@ audio:hover {
     <a href="https://steamcommunity.com/id/perfumedflowers">steam</a>
     <a href="https://github.com/kennedicotarelo">github</a>
     <a href="https://kennedi-cotarelo.itch.io/">itch.io</a>
-    <a href="https://www.etsy.com/people/1y7bvczyjp4t15je">etsy</a>
-
 </div>
 <br>
 
             <div class="links">
 
-                <a href="#" onclick="showPage(event,'games')">games</a>
                 <a href="#" class="active" onclick="showPage(event,'home')">home</a>
+                <a href="#" onclick="showPage(event,'games')">games</a>
                 <a href="#" onclick="showPage(event,'mods')">mods</a>
                 <a href="#" onclick="showPage(event,'software')">software</a>
                 <a href="#" onclick="showPage(event,'articles')">articles</a>
@@ -472,7 +226,12 @@ audio:hover {
             </div>
 
         </div>
-
+<div id="now-playing">
+  <div id="now-playing-track">
+    <span>NOW PLAYING&nbsp;&nbsp; — &nbsp;&nbsp;Rik Schaffer - Is It All Worth It?</span>
+    <span>NOW PLAYING&nbsp;&nbsp; — &nbsp;&nbsp;Rik Schaffer - Is It All Worth It?</span>
+  </div>
+</div>
     </div>
 
     <div class="content">
@@ -677,7 +436,7 @@ audio:hover {
 
 
             <div class="boxalt">
-<br>
+<br><br><br>
 <a href="factions.html" target="_self" class="click">Factions</a>
 <br><br>
 <a href="calumnysdominion.html" target="_self" class="click">Calumny's Dominion</a>
@@ -930,6 +689,61 @@ document.querySelectorAll(".zoom-gallery img").forEach(img => {
   img.addEventListener("mouseleave", hideTooltip);
 
 });
+
+(function () {
+
+  var intro = document.getElementById("k-intro");
+
+  /* First visit only */
+  if (localStorage.getItem("k_intro_seen")) {
+    intro.remove();
+    return;
+  }
+
+  function finish() {
+    localStorage.setItem("k_intro_seen", "1");
+
+    intro.classList.add("hide");
+
+    setTimeout(function () {
+      intro.remove();
+    }, 500);
+  }
+
+  /* Faster loading */
+  setTimeout(finish, 1700);
+
+})();
+
+(function () {
+
+  var music = document.getElementById("site-music");
+  var intro = document.getElementById("k-intro");
+
+  if (!music) return;
+
+  function playMusic() {
+    music.volume = 0.35;
+
+    var promise = music.play();
+
+    if (promise) {
+      promise.catch(function () {
+
+        document.addEventListener("click", function startMusic() {
+          music.play();
+          document.removeEventListener("click", startMusic);
+        }, { once: true });
+      });
+    }
+  }
+
+  /*
+   * Start after intro has finished.
+   */
+  setTimeout(playMusic, 1750);
+
+})();
 
 </script>
 
